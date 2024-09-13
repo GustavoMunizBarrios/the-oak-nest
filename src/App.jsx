@@ -20,8 +20,12 @@ function App() {
             <Heading as="h1">The oak nest</Heading>
             <div>
               <Heading as="h2">Check in and out</Heading>
-              <Button>Check in</Button>
-              <Button>Check out</Button>
+              <Button variation="primary" size="medium">
+                Check in
+              </Button>
+              <Button variation="secondary" size="medium">
+                Check out
+              </Button>
             </div>
           </Row>
 
