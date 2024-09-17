@@ -18,16 +18,16 @@ export default function App() {
         <GlobalStyles />
         <Routes>
           <Route element={<AppLayout />}>
-            <Route index element={<Navigate replace to="dashboard" />}></Route>
-            <Route path="dashboard" element={<Dashboard />}></Route>
-            <Route path="bookings" element={<Bookings />}></Route>
-            <Route path="cabins" element={<Cabins />}></Route>
-            <Route path="users" element={<Users />}></Route>
-            <Route path="settings" element={<Settings />}></Route>
-            <Route path="Account" element={<Account />}></Route>
+            <Route index element={<Navigate replace to="dashboard" />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="bookings" element={<Bookings />} />
+            <Route path="cabins" element={<Cabins />} />
+            <Route path="users" element={<Users />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="Account" element={<Account />} />
           </Route>
-          <Route path="login" element={<Login />}></Route>
-          <Route path="*" element={<PageNotFound />}></Route>
+          <Route path="login" element={<Login />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </>
