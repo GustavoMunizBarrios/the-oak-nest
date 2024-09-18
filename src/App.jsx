@@ -1,5 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+//React query (tanstack) version 4 is used for this project
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import GlobalStyles from "./styles/GlobalStyles";
 import Dashboard from "./pages/Dashboard";
@@ -23,6 +25,7 @@ const queryClient = new QueryClient({
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
         <GlobalStyles />
         <Routes>
