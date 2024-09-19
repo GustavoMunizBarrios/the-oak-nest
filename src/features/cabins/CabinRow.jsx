@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCabin } from "../../services/apiCabins";
 
 const TableRow = styled.div`
@@ -45,10 +45,13 @@ const Discount = styled.div`
 `;
 
 export default function CabinRow({ cabin }) {
+  const queryClient = useQueryClient();
   //
   const { isLoading: isDeleting, mutate } = useMutation({
-    mutationFn: (id) => deleteCabin(id),
-    onSuccess: () => {},
+    mutationFn: deleteCabin,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cabins"] });
+    },
   });
 
   return (
@@ -59,7 +62,7 @@ export default function CabinRow({ cabin }) {
       <Price>{formatCurrency(cabin.regularPrice)}</Price>
       <Discount>{formatCurrency(cabin.discount)}</Discount>
 
-      <button onClick={() => mutate(cabin.cabinId)} disabled={isDeleting}>
+      <button onClick={() => mutate(cabin.id)} disabled={isDeleting}>
         Delete
       </button>
     </TableRow>
