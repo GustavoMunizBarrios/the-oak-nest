@@ -2,6 +2,8 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
+import { useMutation } from "@tanstack/react-query";
+import { deleteCabin } from "../../services/apiCabins";
 
 const TableRow = styled.div`
   display: grid;
@@ -43,6 +45,12 @@ const Discount = styled.div`
 `;
 
 export default function CabinRow({ cabin }) {
+  //
+  const { isLoading: isDeleting, mutate } = useMutation({
+    mutationFn: (id) => deleteCabin(id),
+    onSuccess: () => {},
+  });
+
   return (
     <TableRow role="row">
       <Img src={cabin.image} />
@@ -50,7 +58,10 @@ export default function CabinRow({ cabin }) {
       <div>Fits up to {cabin.maxCapacity}</div>
       <Price>{formatCurrency(cabin.regularPrice)}</Price>
       <Discount>{formatCurrency(cabin.discount)}</Discount>
-      <button></button>
+
+      <button onClick={() => mutate(cabin.cabinId)} disabled={isDeleting}>
+        Delete
+      </button>
     </TableRow>
   );
 }
