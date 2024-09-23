@@ -5,6 +5,8 @@ import { formatCurrency } from "../../utils/helpers";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCabin } from "../../services/apiCabins";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import CreateCabinForm from "./CreateCabinForm";
 
 const TableRow = styled.div`
   display: grid;
@@ -44,8 +46,24 @@ const Discount = styled.div`
   font-weight: 500;
   color: var(--color-green-700);
 `;
+/* Format of the object "cabin":
+[
+{created_at: "2024-09-21T04:00:51.315885+00:00"
+description: "nice"
+discount: 100
+id: 9
+image: "https://wiezaqxevgqussnagtlm.supabase.co/storage/v1/object/public/cabin-images/0.8454090865511756-cabin-003.jpg"
+maxCapacity: 4
+name: "003"
+regularPrice: 400}
+]
 
+*/
 export default function CabinRow({ cabin }) {
+  console.log(cabin);
+
+  const [showForm, setShowForm] = useState(false);
+
   const queryClient = useQueryClient();
   //
   const { isLoading: isDeleting, mutate } = useMutation({
@@ -58,16 +76,22 @@ export default function CabinRow({ cabin }) {
   });
 
   return (
-    <TableRow role="row">
-      <Img src={cabin.image} />
-      <Cabin>{cabin.name}</Cabin>
-      <div>Fits up to {cabin.maxCapacity}</div>
-      <Price>{formatCurrency(cabin.regularPrice)}</Price>
-      <Discount>{formatCurrency(cabin.discount)}</Discount>
+    <>
+      <TableRow role="row">
+        <Img src={cabin.image} />
+        <Cabin>{cabin.name}</Cabin>
+        <div>Fits up to {cabin.maxCapacity}</div>
+        <Price>{formatCurrency(cabin.regularPrice)}</Price>
+        <Discount>{formatCurrency(cabin.discount)}</Discount>
 
-      <button onClick={() => mutate(cabin.id)} disabled={isDeleting}>
-        Delete
-      </button>
-    </TableRow>
+        <div>
+          <button onClick={() => setShowForm((show) => !show)}>Edit</button>
+          <button onClick={() => mutate(cabin.id)} disabled={isDeleting}>
+            Delete
+          </button>
+        </div>
+      </TableRow>
+      {showForm && <CreateCabinForm cabinToEdit={cabin} />}
+    </>
   );
 }
