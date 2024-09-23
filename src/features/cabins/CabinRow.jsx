@@ -59,6 +59,7 @@ regularPrice: 400}
 ]
 
 */
+
 export default function CabinRow({ cabin }) {
   console.log(cabin);
 
