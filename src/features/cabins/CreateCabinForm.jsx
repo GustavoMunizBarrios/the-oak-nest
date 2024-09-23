@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-import { createCabin } from "../../services/apiCabins";
+import { createEditCabin } from "../../services/apiCabins";
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
@@ -14,7 +14,6 @@ import FormRow from "../../ui/FormRow";
 
 function CreateCabinForm({ cabinToEdit = {} }) {
   const { id: editId, ...editValues } = cabinToEdit;
-  console.log(editValues);
 
   const isEditSession = Boolean(editId);
 
@@ -27,7 +26,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   const queryClient = useQueryClient();
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: createCabin,
+    mutationFn: createEditCabin,
     onSuccess: () => {
       toast.success("New cabin successfully created"),
         queryClient.invalidateQueries({ queryKey: ["cabins"] });
@@ -135,7 +134,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           accept="image/*"
           // type="file" //
           {...register("image", {
-            required: "This field is required",
+            required: isEditSession ? false : "This field is required",
           })}
         />
       </FormRow>
