@@ -61,8 +61,6 @@ regularPrice: 400}
 */
 
 export default function CabinRow({ cabin }) {
-  console.log(cabin);
-
   const [showForm, setShowForm] = useState(false);
 
   const queryClient = useQueryClient();
