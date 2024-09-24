@@ -149,7 +149,11 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           accept="image/*"
           // type="file" //
           {...register("image", {
-            required: "This field is required",
+            validate: (fileData) => {
+              if (typeof fileData === "string" || fileData?.length === 1)
+                return true;
+              return "File is required";
+            },
           })}
         />
       </FormRow>

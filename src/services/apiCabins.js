@@ -31,7 +31,10 @@ export async function createEditCabin(newCabin, id) {
 
   // B) Edit
   if (id)
-    query = query.update({ other_column: "otherValue" }).eq("id", id).select();
+    query = query
+      .update({ ...newCabin, image: imagePath })
+      .eq("id", id) // only update the row when "id" is equal to the id of the cabin
+      .select();
 
   const { data, error } = await query.select().single();
 
