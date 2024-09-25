@@ -6,6 +6,7 @@ export function useUpdateSetting() {
   const queryClient = useQueryClient();
 
   const { mutate: updateSetting, isLoading: isUpdating } = useMutation({
+    // We expect a new Setting object prop that looks like {setting: newValue}
     mutationFn: updateSettingApi,
     onSuccess: () => {
       toast.success("Setting successfully edited"),
