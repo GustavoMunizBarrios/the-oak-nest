@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 
@@ -50,6 +51,6 @@ const Button = styled.button`
   }
 `;
 
-export default function Modal() {
-  return <StyledModal>Modal</StyledModal>;
+export default function Modal({ children }) {
+  return <StyledModal>{children}</StyledModal>;
 }
