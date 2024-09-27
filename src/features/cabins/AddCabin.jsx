@@ -12,7 +12,7 @@ export default function AddCabin() {
         Add new cabin
       </Button>
       {isOpenModal && (
-        <Modal>
+        <Modal onClose={() => setIsOpenModal(false)}>
           <CreateCabinForm />
         </Modal>
       )}
