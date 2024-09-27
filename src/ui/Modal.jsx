@@ -55,6 +55,7 @@ const Button = styled.button`
 export default function Modal({ children, onClose }) {
   return (
     <Overlay>
+      {/* Style */}
       <StyledModal>
         <Button onClick={onClose}>
           <HiXMark />
