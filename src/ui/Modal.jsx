@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+
+/* This Modal component is a Compound Component */
+import { createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
@@ -53,7 +56,22 @@ const Button = styled.button`
   }
 `;
 
-export default function Modal({ children, onClose }) {
+const ModalContext = createContext();
+
+function Modal({ children }) {
+  const [openName, setOpenName] = useState("");
+
+  const close = () => setOpenName("");
+  const open = (name) => setOpenName(name);
+}
+
+function Open({ children, opens }) {
+  const { open } = useContext(ModalContext);
+
+  return children;
+}
+
+export default function Window({ children, name, onClose }) {
   // createPortal is a library of react-dom, this convert Modal component to a direct child of
   // the body element, so it can be shown on top of other elements.
   // The portal is nessesary in order to avoid conflicts with the css property overflow set to hidden.
@@ -70,3 +88,6 @@ export default function Modal({ children, onClose }) {
     document.body
   );
 }
+
+Modal.Open = Open;
+Modal.Window = Window;
