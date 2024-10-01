@@ -54,6 +54,9 @@ const Button = styled.button`
 `;
 
 export default function Modal({ children, onClose }) {
+  // createPortal is a library of react-dom, this convert Modal component to a direct child of
+  // the body element, so it can be shown on top of other elements.
+  // The portal is nessesary in order to avoid conflicts with the css property overflow set to hidden.
   return createPortal(
     <Overlay>
       {/* Style */}
