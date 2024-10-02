@@ -63,6 +63,13 @@ function Modal({ children }) {
 
   const close = () => setOpenName("");
   const open = (name) => setOpenName(name);
+  //const open = setOpenName;
+
+  return (
+    <ModalContext.Provider value={{ openName, close, open }}>
+      {children}
+    </ModalContext.Provider>
+  );
 }
 
 function Open({ children, opens: opensWindowName }) {
@@ -75,7 +82,10 @@ function Open({ children, opens: opensWindowName }) {
   return cloneElement(children, { onClick: () => open(opensWindowName) });
 }
 
-export default function Window({ children, name, onClose }) {
+function Window({ children, name }) {
+  const { openName, close } = useContext(ModalContext);
+  if (name !== openName) return null;
+
   // createPortal is a library of react-dom, this convert Modal component to a direct child of
   // the body element, so it can be shown on top of other elements.
   // The portal is nessesary in order to avoid conflicts with the css property overflow set to hidden.
@@ -83,7 +93,7 @@ export default function Window({ children, name, onClose }) {
     <Overlay>
       {/* Style */}
       <StyledModal>
-        <Button onClick={onClose}>
+        <Button onClick={close}>
           <HiXMark />
         </Button>
         <div>{children}</div>
@@ -95,3 +105,5 @@ export default function Window({ children, name, onClose }) {
 
 Modal.Open = Open;
 Modal.Window = Window;
+
+export default Modal;
