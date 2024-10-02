@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 /* This Modal component is a Compound Component */
-import { createContext, useContext, useState } from "react";
+import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
@@ -65,10 +65,14 @@ function Modal({ children }) {
   const open = (name) => setOpenName(name);
 }
 
-function Open({ children, opens }) {
+function Open({ children, opens: opensWindowName }) {
   const { open } = useContext(ModalContext);
 
-  return children;
+  // cloneElement create a new React element using another element as a starting point.
+  // cloneElement(element, props, ...children)
+  // In our case the element is the "children" of Open, and the new props will contain
+  // the "opens" prop of the parent component.
+  return cloneElement(children, { onClick: () => open(opensWindowName) });
 }
 
 export default function Window({ children, name, onClose }) {
