@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
+// The "handler" prop must be the function for close the modal
 export function useOutsideClick(handler, listenCapturing = true) {
   const ref = useRef();
 
