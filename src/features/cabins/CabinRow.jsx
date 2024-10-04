@@ -7,6 +7,7 @@ import { useDeleteCabin } from "./useDeleteCabin";
 import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
 import { useCreateCabin } from "./useCreateCabin";
 import Modal from "../../ui/Modal";
+import ConfirmDelete from "../../ui/ConfirmDelete";
 
 const TableRow = styled.div`
   display: grid;
@@ -98,9 +99,15 @@ export default function CabinRow({ cabin }) {
             <CreateCabinForm cabinToEdit={cabin} />
           </Modal.Window>
 
-          <button onClick={() => deleteCabin(cabin.id)} disabled={isDeleting}>
-            <HiTrash />
-          </button>
+          <Modal.Open>
+            <button onClick={() => deleteCabin(cabin.id)} disabled={isDeleting}>
+              <HiTrash />
+            </button>
+          </Modal.Open>
+
+          <Modal.Window>
+            <ConfirmDelete resourceName="cabins" disabled={isDeleting} />
+          </Modal.Window>
         </Modal>
       </div>
     </TableRow>
