@@ -2,17 +2,11 @@
 /* eslint-disable no-unused-vars */
 
 /* This Modal component is a Compound Component */
-import { useRef } from "react";
-import {
-  cloneElement,
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
+import { useOutsideClick } from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -25,7 +19,6 @@ const StyledModal = styled.div`
   padding: 3.2rem 4rem;
   transition: all 0.5s;
 `;
-
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -37,7 +30,6 @@ const Overlay = styled.div`
   z-index: 1000;
   transition: all 0.5s;
 `;
-
 const Button = styled.button`
   background: none;
   border: none;
@@ -91,24 +83,7 @@ function Open({ children, opens: opensWindowName }) {
 
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
-  const ref = useRef();
-
-  // useEffect for detecting a click outside the modal and closed it
-  useEffect(
-    function () {
-      function handleClick(e) {
-        // ref.current is the modal (StyledModal)
-        if (ref.current && !ref.current.contains(e.target)) {
-          close();
-        }
-      }
-
-      document.addEventListener("click", handleClick, true);
-
-      return () => document.removeEventListener("click", handleClick, true);
-    },
-    [close]
-  );
+  const ref = useOutsideClick(close);
 
   if (name !== openName) return null;
 
