@@ -93,17 +93,19 @@ function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
   const ref = useRef();
 
+  // useEffect for detecting a click outside the modal and closed it
   useEffect(
     function () {
       function handleClick(e) {
-        if (ref.current && !ref.current.contain(e.target)) {
+        // ref.current is the modal (StyledModal)
+        if (ref.current && !ref.current.contains(e.target)) {
           close();
         }
       }
 
-      document.addEventListener("click", handleClick);
+      document.addEventListener("click", handleClick, true);
 
-      return () => document.removeEventListener("click", handleClick);
+      return () => document.removeEventListener("click", handleClick, true);
     },
     [close]
   );
