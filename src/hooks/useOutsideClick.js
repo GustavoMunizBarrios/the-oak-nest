@@ -1,3 +1,5 @@
+/*This hook allows you to detect clicks outside a referenced DOM element, such as a modal or dropdown. If the click occurs outside the referenced element, the handler function is executed. The hook also cleans up the event listener when the component is unmounted or when dependencies change. */
+
 import { useEffect, useRef } from "react";
 
 export function useOutsideClick(handler, listenCapturing = true) {
