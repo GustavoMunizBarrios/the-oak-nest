@@ -100,13 +100,17 @@ export default function CabinRow({ cabin }) {
           </Modal.Window>
 
           <Modal.Open>
-            <button onClick={() => deleteCabin(cabin.id)} disabled={isDeleting}>
+            <button>
               <HiTrash />
             </button>
           </Modal.Open>
 
           <Modal.Window>
-            <ConfirmDelete resourceName="cabins" disabled={isDeleting} />
+            <ConfirmDelete
+              resourceName="cabins"
+              disabled={isDeleting}
+              onConfirm={() => deleteCabin(cabin.id)}
+            />
           </Modal.Window>
         </Modal>
       </div>
