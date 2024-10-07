@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import styled from "styled-components";
 
 const StyledMenu = styled.div`
@@ -60,3 +62,7 @@ const StyledButton = styled.button`
     transition: all 0.3s;
   }
 `;
+
+export default function Menus({ children }) {
+  return <div>{children}</div>;
+}
