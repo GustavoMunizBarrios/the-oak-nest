@@ -10,6 +10,7 @@ import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
+import { CgMenuOreos } from "react-icons/cg";
 
 /* const TableRow = styled.div`
   display: grid;
@@ -117,12 +118,12 @@ export default function CabinRow({ cabin }) {
         </Modal>
 
         <Menus.Menu>
-          <Menus.Toggle id={cabinId} />
+          <Menus.Toggle id={cabin.cabinId} />
 
-          <Menus.List id={cabinId}>
-            <Menu.Button>Duplicate</Menu.Button>
-            <Menu.Button>Edit</Menu.Button>
-            <Menu.Button>Delete</Menu.Button>
+          <Menus.List id={cabin.cabinId}>
+            <Menus.Button>Duplicate</Menus.Button>
+            <Menus.Button>Edit</Menus.Button>
+            <Menus.Button>Delete</Menus.Button>
           </Menus.List>
         </Menus.Menu>
       </div>

@@ -68,13 +68,15 @@ const StyledButton = styled.button`
 
 const MenusContext = createContext();
 
-export default function Menus({ children }) {
+function Menus({ children }) {
   const [openId, setOpenId] = useState("");
   const close = () => setOpenId("");
   const open = (name) => setOpenId(name); // short form: open = setOpenId;
 
   return (
-    <MenusContext value={{ openId, close, open }}>{children}</MenusContext>
+    <MenusContext.Provider value={{ openId, close, open }}>
+      {children}
+    </MenusContext.Provider>
   );
 }
 
@@ -98,6 +100,7 @@ function List({ id, children }) {
   if (openId !== id) return null;
 
   return createPortal(
+    // createPortal render a component outside of its parent component
     <StyledList position={{ x: 20, y: 20 }}>{children}</StyledList>,
     document.body
   );
@@ -115,3 +118,5 @@ Menus.Menu = Menu;
 Menus.Toggle = Toggle;
 Menus.List = List;
 Menus.Button = Button;
+
+export default Menus;
