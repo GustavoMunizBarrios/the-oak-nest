@@ -10,7 +10,7 @@ const StyledFilter = styled.div`
   gap: 0.4rem;
 `;
 
-const FilterButton = styled.button`
+const StyledButton = styled.button`
   background-color: var(--color-grey-0);
   border: none;
 
@@ -33,3 +33,15 @@ const FilterButton = styled.button`
     color: var(--color-brand-50);
   }
 `;
+
+export default function Filter() {
+  return (
+    <div>
+      <StyledFilter>
+        <StyledButton>All</StyledButton>
+        <StyledButton>No discount</StyledButton>
+        <StyledButton>With discount</StyledButton>
+      </StyledFilter>
+    </div>
+  );
+}
