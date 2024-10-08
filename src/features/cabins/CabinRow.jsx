@@ -121,8 +121,12 @@ export default function CabinRow({ cabin }) {
           <Menus.Toggle id={cabin.cabinId} />
 
           <Menus.List id={cabin.cabinId}>
-            <Menus.Button icon={<HiSquare2Stack />}>Duplicate</Menus.Button>
+            <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>
+              Duplicate
+            </Menus.Button>
+
             <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
+
             <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
           </Menus.List>
         </Menus.Menu>
