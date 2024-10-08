@@ -53,6 +53,7 @@ export default function Filter({ filterField, options }) {
           <StyledButton
             onClick={() => handleClick(option.value)}
             active={option.value === currentFilter}
+            disabled={option.value === currentFilter}
             key={option.value}
           >
             {option.label}
