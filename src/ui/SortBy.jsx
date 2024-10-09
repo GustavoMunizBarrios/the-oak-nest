@@ -1,5 +1,8 @@
-/* eslint-disable no-unused-vars */
+import Select from "./Select";
+
 /* eslint-disable react/prop-types */
 export default function SortBy({ options }) {
-  return <div>Sort</div>;
+  function handleChange() {}
+
+  return <Select options={options} type={"white"} onChange={handleChange} />;
 }
