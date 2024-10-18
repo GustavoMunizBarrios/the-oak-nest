@@ -1,4 +1,6 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import styled from "styled-components";
 
 const StyledPagination = styled.div`
@@ -57,12 +59,27 @@ const PaginationButton = styled.button`
   }
 `;
 
-export default function Pagination() {
+export default function Pagination({ count }) {
+  function nextPage() {}
+
+  function prevPage() {}
+
   return (
     <StyledPagination>
       <P>
-        Showing <span>1</span> to <span>10</span> of <span>23</span> result
+        Showing <span>1</span> to <span>10</span> of <span>{count}</span> result
       </P>
+
+      <Buttons>
+        <PaginationButton onClick={prevPage}>
+          <HiChevronLeft /> <span>Previous</span>
+        </PaginationButton>
+
+        <PaginationButton onClick={nextPage}>
+          <span>Next</span>
+          <HiChevronRight />
+        </PaginationButton>
+      </Buttons>
     </StyledPagination>
   );
 }
