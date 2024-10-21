@@ -19,7 +19,7 @@ export function useBookings() {
 
   const {
     isLoading,
-    data: { data: bookings, count } = {},
+    data: { data: bookings, count } = {}, // we need "{ }" at the end for prevent null data
     error,
   } = useQuery({
     queryKey: ["bookings", filter, sortBy], // when the "filter" or "sortBy" changes then will re-fetch the data
