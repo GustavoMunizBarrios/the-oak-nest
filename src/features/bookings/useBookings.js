@@ -19,12 +19,13 @@ export function useBookings() {
 
   const {
     isLoading,
-    data: bookings,
+    data: { data: bookings, count } = {},
     error,
   } = useQuery({
     queryKey: ["bookings", filter, sortBy], // when the "filter" or "sortBy" changes then will re-fetch the data
     queryFn: () => getBookings({ filter, sortBy }),
   });
+  console.log(bookings);
 
-  return { isLoading, error, bookings };
+  return { isLoading, error, bookings, count };
 }
