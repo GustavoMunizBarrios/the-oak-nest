@@ -87,6 +87,7 @@ function BookingRow({
 
       <Amount>{formatCurrency(totalPrice)}</Amount>
 
+      {/* OVERFLOW MENU / 3 dot button */}
       <Menus.Menu>
         {/* Note: the id is nessesary in Toggle and List because they need to be linked */}
         <Menus.Toggle id={bookingId} />
