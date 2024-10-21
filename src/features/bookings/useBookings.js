@@ -17,15 +17,17 @@ export function useBookings() {
   const [field, direction] = sortByRaw.split("-");
   const sortBy = { field, direction };
 
+  //PAGINATION
+  const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
+
   const {
     isLoading,
     data: { data: bookings, count } = {}, // we need "{ }" at the end for prevent null data
     error,
   } = useQuery({
-    queryKey: ["bookings", filter, sortBy], // when the "filter" or "sortBy" changes then will re-fetch the data
-    queryFn: () => getBookings({ filter, sortBy }),
+    queryKey: ["bookings", filter, sortBy, page], // when the "filter" or "sortBy" changes then will re-fetch the data
+    queryFn: () => getBookings({ filter, sortBy, page }),
   });
-  console.log(bookings);
 
   return { isLoading, error, bookings, count };
 }
