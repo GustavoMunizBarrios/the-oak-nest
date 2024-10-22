@@ -9,8 +9,8 @@ import Menus from "../../ui/Menus";
 
 import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
-import { HiEye } from "react-icons/hi2";
-import { Navigate, useNavigate } from "react-router-dom";
+import { HiArrowDownOnSquare, HiEye } from "react-icons/hi2";
+import { useNavigate } from "react-router-dom";
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -74,11 +74,11 @@ function BookingRow({
         <span>
           {isToday(new Date(startDate))
             ? "Today"
-            : formatDistanceFromNow(startDate)}{" "}
+            : formatDistanceFromNow(startDate)}
           &rarr; {numNights} night stay
         </span>
         <span>
-          {format(new Date(startDate), "MMM dd yyyy")} &mdash;{" "}
+          {format(new Date(startDate), "MMM dd yyyy")} &mdash;
           {format(new Date(endDate), "MMM dd yyyy")}
         </span>
       </Stacked>
@@ -98,6 +98,16 @@ function BookingRow({
           >
             See details
           </Menus.Button>
+
+          {/* status could be: "checked-in", "checked-out", or "unconfirmed" */}
+          {status === "unconfirmed" && (
+            <Menus.Button
+              icon={<HiArrowDownOnSquare />}
+              onClick={() => navigate(`/checkin/${bookingId}`)}
+            >
+              Check in
+            </Menus.Button>
+          )}
         </Menus.List>
       </Menus.Menu>
     </Table.Row>
