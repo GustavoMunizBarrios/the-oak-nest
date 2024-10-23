@@ -10,9 +10,9 @@ export function useBooking() {
     data: booking,
     error,
   } = useQuery({
-    queryKey: ["booking", bookingId],
+    queryKey: ["booking", bookingId], //// when the "bookingId" changes then will re-fetch the data
     queryFn: () => getBooking(bookingId),
-    retry: false,
+    retry: false, // This tells React Query not to retry fetching the data if the query fails.
   });
 
   return { isLoading, error, booking };

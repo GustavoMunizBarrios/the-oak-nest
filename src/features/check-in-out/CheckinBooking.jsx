@@ -26,6 +26,7 @@ function CheckinBooking() {
   const [confirmPaid, setConfirmPaid] = useState(false);
   const { booking, isLoading } = useBooking();
 
+  // if booking object exist and booking.isPaid is true then set the state confirmPaid to booking.isPaid Otherwise, it sets confirmPaid to false. The effect only runs when booking changes.
   useEffect(
     () => setConfirmPaid(booking && booking.isPaid ? booking.isPaid : false),
     [booking]
