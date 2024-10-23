@@ -165,7 +165,8 @@ function BookingDataBox({ booking }) {
           {hasBreakfast ? "Yes" : "No"}
         </DataItem>
 
-        <Price isPaid={isPaid}>
+        {/* "$" is Transient prop  */}
+        <Price $isPaid={isPaid}>
           <DataItem icon={<HiOutlineCurrencyDollar />} label={`Total price`}>
             {formatCurrency(totalPrice)}
 
@@ -174,7 +175,6 @@ function BookingDataBox({ booking }) {
                 extrasPrice
               )} breakfast)`}
           </DataItem>
-
           <p>{isPaid ? "Paid" : "Will pay at property"}</p>
         </Price>
       </Section>
