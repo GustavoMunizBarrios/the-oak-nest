@@ -26,6 +26,7 @@ const Box = styled.div`
 
 function CheckinBooking() {
   const [confirmPaid, setConfirmPaid] = useState(false);
+  const [addBreakFast, setAddBreakFast] = useState(false);
   const { booking, isLoading } = useBooking();
 
   // if booking object exist and booking.isPaid is true then set the state confirmPaid to booking.isPaid Otherwise, it sets confirmPaid to false. The effect only runs when booking changes.
@@ -61,6 +62,19 @@ function CheckinBooking() {
       </Row>
 
       <BookingDataBox booking={booking} />
+
+      <Box>
+        <Checkbox
+          checked={addBreakFast}
+          onChange={() => {
+            setAddBreakFast((add) => !add);
+            setConfirmPaid(false);
+          }}
+          id="breakfast"
+        >
+          Want to add breakfast for X
+        </Checkbox>
+      </Box>
 
       <Box>
         <Checkbox
