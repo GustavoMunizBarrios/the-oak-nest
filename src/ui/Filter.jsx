@@ -43,6 +43,7 @@ export default function Filter({ filterField, options }) {
 
   function handleClick(value) {
     searchParams.set(filterField, value); //value can be "all", "no-discount" or "with-discount"
+    if (searchParams.get("page")) searchParams.set("page", 1);
     setSearchParams(searchParams);
   }
 
