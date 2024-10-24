@@ -11,6 +11,7 @@ import { formatCurrency } from "../../utils/helpers";
 import { formatDistanceFromNow } from "../../utils/helpers";
 import { HiArrowDownOnSquare, HiArrowUpOnSquare, HiEye } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
+import { useCheckout } from "../check-in-out/useCheckout";
 
 const Cabin = styled.div`
   font-size: 1.6rem;
@@ -18,7 +19,6 @@ const Cabin = styled.div`
   color: var(--color-grey-600);
   font-family: "Sono";
 `;
-
 const Stacked = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,7 +33,6 @@ const Stacked = styled.div`
     font-size: 1.2rem;
   }
 `;
-
 const Amount = styled.div`
   font-family: "Sono";
   font-weight: 500;
@@ -54,6 +53,8 @@ function BookingRow({
   },
 }) {
   const navigate = useNavigate();
+
+  const { checkout, isCheckingOut } = useCheckout();
 
   const statusToTagName = {
     unconfirmed: "blue",
@@ -109,7 +110,11 @@ function BookingRow({
             </Menus.Button>
           )}
           {status === "checked-in" && (
-            <Menus.Button icon={<HiArrowUpOnSquare />} onClick={() => {}}>
+            <Menus.Button
+              icon={<HiArrowUpOnSquare />}
+              onClick={() => checkout(bookingId)}
+              disabled={isCheckingOut}
+            >
               Check out
             </Menus.Button>
           )}
