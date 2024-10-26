@@ -8,7 +8,7 @@ export function useLogin() {
 
   const { mutate: login, isLoading } = useMutation({
     mutationFn: ({ email, password }) => loginApi({ email, password }),
-    // data received by loginApi
+    // "user" is the data received by loginApi
     onSuccess: (user) => {
       console.log(user);
 
