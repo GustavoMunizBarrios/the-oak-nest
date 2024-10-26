@@ -17,7 +17,7 @@ function LoginForm() {
     if (!email || !password) return;
     login(
       { email, password },
-      // if email or password are incorrect then reset
+      // after either succeeded or failed login mutation reset email and pasword
       {
         onSettled: () => {
           setEmail("");
