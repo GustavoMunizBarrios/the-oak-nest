@@ -12,7 +12,7 @@ export function useLogin() {
     // "user" is the data received by loginApi
     onSuccess: (user) => {
       //set user data into React query cache
-      queryClient.setQueryData(["user"], user);
+      queryClient.setQueryData(["user"], user.user);
       navigate("/dashboard", { replace: true });
     },
     onError: (err) => {
