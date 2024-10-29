@@ -10,6 +10,9 @@ export async function signup({ fullName, email, password }) {
   });
 
   if (error) {
+    if (error.message.includes("unique")) {
+      throw new Error("Email already in use");
+    }
     throw new Error(error.message);
   }
   return data;

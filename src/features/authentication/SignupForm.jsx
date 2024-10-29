@@ -28,6 +28,7 @@ function SignupForm() {
         <Input
           type="text"
           id="fullName"
+          disabled={isLoading}
           {...register("fullName", {
             required: "This field is required",
           })}
@@ -37,6 +38,7 @@ function SignupForm() {
       <FormRow label="Email address" error={errors?.email?.message}>
         <Input
           type="email"
+          disabled={isLoading}
           id="email"
           {...register("email", {
             required: "This field is required",
@@ -54,6 +56,7 @@ function SignupForm() {
       >
         <Input
           type="password"
+          disabled={isLoading}
           id="password"
           {...register("password", {
             required: "This field is required",
@@ -68,6 +71,7 @@ function SignupForm() {
       <FormRow label="Repeat password" error={errors?.passwordConfirm?.message}>
         <Input
           type="password"
+          disabled={isLoading}
           id="passwordConfirm"
           {...register("passwordConfirm", {
             required: "This field is required",
