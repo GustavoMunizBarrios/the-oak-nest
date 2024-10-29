@@ -20,8 +20,7 @@ export default function HeaderMenu() {
         </ButtonIcon>
       </li>
       <li>
-        {" "}
-        <Logout />{" "}
+        <Logout />
       </li>
     </StyledHeaderMenu>
   );
