@@ -1,7 +1,7 @@
 //import { SupabaseClient } from "@supabase/supabase-js";
 //import { SupabaseClient } from "./supabase";
 import supabase from "./supabase";
-//import { supabaseUrl } from "./supabase";
+import { supabaseUrl } from "./supabase";
 
 export async function signup({ fullName, email, password }) {
   const { data, error } = await supabase.auth.signUp({
@@ -75,8 +75,8 @@ export async function updateCurrentUser({ password, fullName, avatar }) {
 
   const { data: updateUser, error: error2 } = supabase.auth.updateUser({
     data: {
-      //avatar: `${supabaseUrl}/storage/v1/object/public/avatars/${fileName}`,
-      avatar: `${supabase.storage.from("avatars").path}/${fileName}`,
+      avatar: `${supabaseUrl}/storage/v1/object/public/avatars/${fileName}`,
+      //avatar: `${supabase.storage.from("avatars").path}/${fileName}`,
     },
   });
   if (error2) throw new Error(error2.message);
