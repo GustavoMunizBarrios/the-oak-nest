@@ -34,26 +34,31 @@ function UpdateUserDataForm() {
       <FormRow label="Email address">
         <Input value={email} disabled />
       </FormRow>
+
       <FormRow label="Full name">
         <Input
           type="text"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
           id="fullName"
+          disabled={isUpdating}
         />
       </FormRow>
+
       <FormRow label="Avatar image">
         <FileInput
           id="avatar"
           accept="image/*"
           onChange={(e) => setAvatar(e.target.files[0])}
+          disabled={isUpdating}
         />
       </FormRow>
+
       <FormRow>
-        <Button type="reset" variation="secondary">
+        <Button type="reset" variation="secondary" disabled={isUpdating}>
           Cancel
         </Button>
-        <Button>Update account</Button>
+        <Button disabled={isUpdating}>Update account</Button>
       </FormRow>
     </Form>
   );
