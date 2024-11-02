@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { getStaysAfterDate } from "../../services/apiBookings";
 import { useQuery } from "@tanstack/react-query";
 
-export function useRecentBookings() {
+export function useRecentStays() {
   const [searchParams] = useSearchParams();
 
   const numDays = !searchParams.get("last")
