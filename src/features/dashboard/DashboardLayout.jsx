@@ -22,7 +22,7 @@ export default function Dashboardlayout() {
 
   return (
     <StyledDashboardLayout>
-      <Stats />
+      <Stats bookings={bookings} confirmedStays={confirmedStays} />
       <div>{"Today's activity"}</div>
       <div>Chart stay durations</div>
       <div>Chart sales</div>
