@@ -22,10 +22,9 @@ export default function Stats({
   const checkins = confirmedStays.length;
 
   // 4. occupancy rates (number of checked-in nights / all available nights)
-  const occupation = confirmedStays.reduce(
-    (acc, cur) => acc + cur.numNights,
-    0
-  );
+  const occupation =
+    confirmedStays.reduce((acc, cur) => acc + cur.numNights, 0) /
+    (numDays * cabinCount);
 
   return (
     <>
@@ -51,7 +50,7 @@ export default function Stats({
         title="Occupancy rate"
         color="yellow"
         icon={<HiOutlineChartBar />}
-        value={occupation}
+        value={Math.round(occupation * 100) + "%"}
       />
     </>
   );
