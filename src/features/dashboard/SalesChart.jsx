@@ -76,17 +76,39 @@ export default function SalesChart() {
       <Heading as="h2">Sales</Heading>
 
       <ResponsiveContainer height={300} width="100%">
-        <AreaChart data={fakeData}>
-          <XAxis dataKey="label" />
-          <YAxis unit="$" />
+        <AreaChart
+          data={fakeData}
+          margin={{ top: 10, right: 30, left: 10, bottom: 0 }}
+        >
+          <XAxis
+            dataKey="label"
+            tick={{ fill: colors.text }}
+            tickLine={{ stroke: colors.text }}
+          />
+          <YAxis
+            tickFormatter={(value) => `$${value.toLocaleString()}`}
+            tick={{ fill: colors.text }}
+            tickLine={{ stroke: colors.text }}
+          />
           <CartesianGrid strokeDasharray="3 3" />
-          <CartesianGrid />
-          <Tooltip />
+          <Tooltip contentStyle={{ backgroundColor: colors.background }} />
           <Area
+            dataKey="totalSales"
+            unit="$"
             type="monotone"
             stroke={colors.totalSales.stroke}
             fill={colors.totalSales.fill}
-            dataKey="totalSales"
+            strokeWidth={2}
+            name="Total Sales"
+          />
+          <Area
+            dataKey="extrasSales"
+            unit="$"
+            type="monotone"
+            stroke={colors.extrasSales.stroke}
+            fill={colors.extrasSales.fill}
+            strokeWidth={2}
+            name="Extras Sales"
           />
         </AreaChart>
       </ResponsiveContainer>
