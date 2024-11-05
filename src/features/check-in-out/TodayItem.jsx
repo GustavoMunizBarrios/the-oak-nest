@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 
 const StyledTodayItem = styled.li`
@@ -18,3 +20,9 @@ const StyledTodayItem = styled.li`
 const Guest = styled.div`
   font-weight: 500;
 `;
+
+export default function TodayItem({ activity }) {
+  const { id, status, guests, numNights } = activity;
+
+  return <StyledTodayItem>Item</StyledTodayItem>;
+}
