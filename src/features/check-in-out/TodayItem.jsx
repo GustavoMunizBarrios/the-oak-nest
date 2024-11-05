@@ -40,7 +40,7 @@ export default function TodayItem({ activity }) {
 
       {status === "unconfirmed" && (
         <Button
-          type="small"
+          size="small"
           variation="primary"
           as={Link}
           to={`/checkin/${id}`}
