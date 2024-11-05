@@ -3,6 +3,7 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import Heading from "../../ui/Heading";
+import { useDarkMode } from "../../context/DarkModeContext";
 import {
   Cell,
   Legend,
@@ -33,42 +34,42 @@ const ChartBox = styled.div`
 const startDataLight = [
   {
     duration: "1 night",
-    value: 1,
+    value: 0,
     color: "#ef4444",
   },
   {
     duration: "2 nights",
-    value: 2,
+    value: 0,
     color: "#f97316",
   },
   {
     duration: "3 nights",
-    value: 3,
+    value: 0,
     color: "#eab308",
   },
   {
     duration: "4-5 nights",
-    value: 4,
+    value: 0,
     color: "#84cc16",
   },
   {
     duration: "6-7 nights",
-    value: 5,
+    value: 0,
     color: "#22c55e",
   },
   {
     duration: "8-14 nights",
-    value: 6,
+    value: 0,
     color: "#14b8a6",
   },
   {
     duration: "15-21 nights",
-    value: 7,
+    value: 0,
     color: "#3b82f6",
   },
   {
     duration: "21+ nights",
-    value: 8,
+    value: 0,
     color: "#a855f7",
   },
 ];
@@ -144,13 +145,17 @@ function prepareData(startData, stays) {
 }
 
 export default function DurationChart({ confirmedStays }) {
+  const { isDarkMode } = useDarkMode();
+  const startData = isDarkMode ? startDataDark : startDataLight;
+  const data = prepareData(startData, confirmedStays);
+
   return (
     <ChartBox>
       <Heading as="h2">Stay duration summary</Heading>
       <ResponsiveContainer width="100%" height={240}>
         <PieChart>
           <Pie
-            data={startDataLight}
+            data={data}
             nameKey="duration"
             dataKey="value"
             innerRadius={80}
@@ -159,7 +164,7 @@ export default function DurationChart({ confirmedStays }) {
             cy="50%"
             paddingAngle={3}
           >
-            {startDataLight.map((entry) => (
+            {data.map((entry) => (
               <Cell
                 fill={entry.color}
                 stroke={entry.color}
