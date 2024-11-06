@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
@@ -10,7 +9,7 @@ import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
-import { CgMenuOreos } from "react-icons/cg";
+//import { CgMenuOreos } from "react-icons/cg";
 
 /* const TableRow = styled.div`
   display: grid;
@@ -92,7 +91,11 @@ export default function CabinRow({ cabin }) {
             <Menus.Toggle id={cabin.id} />
 
             <Menus.List id={cabin.id}>
-              <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>
+              <Menus.Button
+                icon={<HiSquare2Stack />}
+                onClick={handleDuplicate}
+                disabled={isCreating}
+              >
                 Duplicate
               </Menus.Button>
 
