@@ -6,14 +6,14 @@ const StyledLogo = styled.div`
 `;
 
 const Img = styled.img`
-  height: 9.6rem;
+  height: 19rem;
   width: auto;
 `;
 
 function Logo() {
   const { isDarkMode } = useDarkMode();
 
-  const src = isDarkMode ? "/logo-dark.png" : "/logo-light.png";
+  const src = isDarkMode ? "/the-oak-nest-dark.svg" : "/the-oak-nest-light.svg";
 
   return (
     <StyledLogo>
