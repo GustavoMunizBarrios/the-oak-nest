@@ -1,22 +1,24 @@
+import styled from "styled-components";
+
+const StyledLogin = styled.div`
+  height: 12rem;
+  width: 40rem;
+  margin-top: auto;
+  padding: 8px;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: var(--color-grey-0);
+`;
+
 export default function TestLogin() {
   return (
-    <div
-      style={{
-        height: "10rem",
-        width: "30rem",
-        marginTop: "auto",
-        backgroundColor: "#e0e7ff",
-        padding: "8px",
-        borderRadius: "5px",
-        textAlign: "center",
-        display: "flex",
-        flexDirection: "column",
-        gap: "8px",
-      }}
-    >
+    <StyledLogin>
       <h3>Test it !</h3>
-      <p>Email address: example@mail.com </p>
+      <p>Email address: tixih88452@nestvia.com </p>
       <p>Password: 12345678</p>
-    </div>
+    </StyledLogin>
   );
 }
