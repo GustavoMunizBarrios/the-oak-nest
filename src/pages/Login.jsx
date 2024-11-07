@@ -2,6 +2,7 @@ import styled from "styled-components";
 import LoginForm from "../features/authentication/LoginForm";
 import Logo from "../ui/Logo";
 import Heading from "../ui/Heading";
+import TestLogin from "../ui/TestLogin";
 
 const LoginLayout = styled.main`
   min-height: 100vh;
@@ -9,19 +10,23 @@ const LoginLayout = styled.main`
   grid-template-columns: 48rem;
   align-content: center;
   justify-content: center;
+  justify-items: center;
   gap: 3.2rem;
   background-color: var(--color-grey-50);
 `;
 
 function Login() {
   return (
-    <LoginLayout>
-      <Logo />
+    <>
+      <LoginLayout>
+        <Logo />
 
-      <Heading as="h2">Log in to your account</Heading>
+        <Heading as="h2">Log in to your account</Heading>
 
-      <LoginForm />
-    </LoginLayout>
+        <LoginForm />
+        <TestLogin />
+      </LoginLayout>
+    </>
   );
 }
 
