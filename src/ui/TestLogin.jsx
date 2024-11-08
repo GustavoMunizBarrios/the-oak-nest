@@ -11,6 +11,7 @@ const StyledLogin = styled.div`
   flex-direction: column;
   gap: 8px;
   background-color: var(--color-grey-0);
+  font-size: 1.4rem;
 `;
 
 export default function TestLogin() {
